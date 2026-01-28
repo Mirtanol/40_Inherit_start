@@ -6,14 +6,22 @@ export class BoardBalda extends Board {
         str: string[] | string = "балда",
         init: boolean = true
     ) {
-        // TODO
-        // Если длина str==5, то дополняет ее 10 пробелами до и после
-        // Вызывает родительский конструктор,
-        //  если init, то дополнительно инициализируются
-        //  статические поля класса
-            super(str)
+        let normalized: string[] | string = str
 
+        if (Array.isArray(str)) {
+            if (str.length === 1) normalized = str[0]
+            else normalized = str
+        }
+
+        if (typeof normalized === "string" && normalized.length === 5) {
+            const spaces10 = new Array(11).join(" ")
+            normalized = spaces10 + normalized + spaces10
+        }
+
+        if (init) super(normalized, BoardBaldaParam.row, BoardBaldaParam.col)
+        else super(normalized)
     }
+    
     clone(init: boolean = false): Board {
         // TODO
         // Функция должна вернуть копию объекта
