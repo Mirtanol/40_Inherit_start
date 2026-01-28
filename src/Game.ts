@@ -43,14 +43,21 @@ export class Game {
     }
 
     move(index: number): boolean {
-        // TODO        
-        // Определяет, какой символ ходит, и пытается сделать ход 
-        //  с помощью board.move.
-        // Если ход можно сделать, то добавляет  новыу позицию в steps, 
-        //  обновляет current и возвращает true, иначе возвращает false
-        // Нужно учесть, что если вызывалась функция toStep, то 
-        //  current можно указывать не на последний элемент steps
-        return true  
+        if (this.state.board.status() !== "Идет игра") return false
+
+        const sym = this.input.sym
+        if (sym.trim().length === 0) return false
+
+        const boardCopy = this.state.board.clone()
+        if (!boardCopy.move(index, sym)) return false
+
+        this.steps = this.steps.slice(0, this.current + 1)
+        this.steps.push(new State(boardCopy, sym))
+        this.current = this.steps.length - 1
+
+        this.input.move()
+        GameVC.draw()
+        return true
     }
 
     toStep(step: number) {
