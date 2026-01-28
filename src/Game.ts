@@ -61,10 +61,24 @@ export class Game {
     }
 
     toStep(step: number) {
-         // TODO
-        // Проверяет, что в steps есть элемент с индексом step,
-        //  если нет то возвращает false
-        // Делает current равным step и обновляет свойство cell в board
-        return true  
+        if (step < 0 || step >= this.steps.length) return false
+        this.current = step
+
+        // синхронизация хода для крестиков-ноликов
+        let x = 0
+        let o = 0
+        for (const c of this.state.board.cells) {
+            if (c === "X") x++
+            else if (c === "0") o++
+        }
+        const next = x <= o ? "X" : "0"
+        if ((this.input as any)._sym !== undefined) (this.input as any)._sym = next
+
+        // для балды — очищаем поле ввода (если оно есть)
+        const baldaInput = document.getElementById("inputBalda") as HTMLInputElement | null
+        if (baldaInput) baldaInput.value = ""
+
+        GameVC.draw()
+        return true
     }
 }
