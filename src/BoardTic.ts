@@ -6,12 +6,21 @@ export class BoardTic extends Board {
         str: string[] | string = ["_________"],
         init: boolean = true        
     ) {
-        // TODO
-        // Если длина str!=9, то используется строка по умолчанию
-        // Вызывает родительский конструктор,
-        //  если init, то дополнительно инициализируются
-        //  статические поля класса
-            super(str)
+        let normalized: string[] | string = str
+
+        if (Array.isArray(str)) {
+            if (str.length === 1) normalized = str[0]
+            else normalized = str
+        }
+
+        if (typeof normalized === "string") {
+            if (normalized.length !== 9) normalized = "_________"
+        } else {
+            if (normalized.length !== 9) normalized = "_________"
+        }
+
+        if (init) super(normalized, BoardTicParam.row, BoardTicParam.col)
+        else super(normalized)
     }
 
     clone(init: boolean=false): Board {
