@@ -35,9 +35,9 @@ export abstract class Board {
     }
 
     move(index: number, sym: string): boolean {
-        // TODO
-        // Если ячейка this.cell[index] занята - возвращает false
-        // Записывает в ячейку cell и возвращает true
+        if (index < 0 || index >= this.cells.length) return false
+        if (this.cells[index] !== "_" && this.cells[index] !== " ") return false
+        this.cells[index] = sym
         return true
     }
 
