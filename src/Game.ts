@@ -30,9 +30,7 @@ export class Game {
     }
 
     get state(): State {
-        // TODO
-        // Сеттер должен возвращать текущее состояние игры
-        return this.steps[0]
+        return this.steps[this.current]
     }
 
     clone(): Game {
