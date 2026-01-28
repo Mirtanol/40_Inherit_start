@@ -15,13 +15,18 @@ export abstract class Board {
         row?: number,
         col?: number,
     ) {
-        // TODO
-        // При наличии row или col 
-        //  инициализировать соответсвующие поля
-        // Инициализировать массив cells
-        this.cells = []
-    }
+        if (row != null) Board.row = row
+        if (col != null) Board.col = col
 
+        if (typeof str === "string") {
+            const res: string[] = []
+            for (let i = 0; i < str.length; i++) res.push(str.charAt(i))
+            this.cells = res
+        } 
+        else {
+            this.cells = [...str]
+        }
+    }
 
     abstract clone(): Board
 
