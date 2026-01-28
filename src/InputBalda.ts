@@ -15,9 +15,9 @@ export class InputBalda extends Input {
     if (!/^[а-яё]$/i.test(ch)) return ""
     return ch.toLowerCase()
     }
-    
+
     move(): void {
-        // TODO
-        //  очищает поле ввода
+        const el = document.getElementById("inputBalda") as HTMLInputElement | null
+        if (el) el.value = ""
     }
 }
