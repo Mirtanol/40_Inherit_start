@@ -31,11 +31,7 @@ export abstract class Board {
     abstract clone(): Board
 
     isFill(): boolean {
-        // TODO
-        // Возвращет true если на доске нет пустых клеток
-        // Реомендуется реализация без циклов,
-        //  с использованием функций массивов
-        return true
+        return this.cells.every((c) => c !== "_" && c !== " ")
     }
 
     move(index: number, sym: string): boolean {
