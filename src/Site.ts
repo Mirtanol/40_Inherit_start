@@ -110,8 +110,6 @@ export class Site {
     }
 
     keys(): string[] {
-        // TODO
-        // вовзращает список ключей игр из массива Games
-        return []
+        return this.games.map((g) => g.key)
     }
 }
