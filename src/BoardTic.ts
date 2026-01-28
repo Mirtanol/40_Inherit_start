@@ -51,12 +51,12 @@ export class BoardTic extends Board {
     }
 
     override status(): string {
-        // TODO
-        // возвращает либо строку с результатом игры, либо, 
-        //   если игра не закончена, вызывает status родителя.
-        return ""
+        const w = this.checkWin()
+        if (w === "X") return "Победил X"
+        if (w === "0") return "Победил 0"
+        if (this.isFill()) return "Ничья"
+        return super.status()
     }
-
 }
 
 export const BoardTicParam: BoardParam = {
