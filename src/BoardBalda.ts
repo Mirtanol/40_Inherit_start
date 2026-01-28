@@ -21,13 +21,9 @@ export class BoardBalda extends Board {
         if (init) super(normalized, BoardBaldaParam.row, BoardBaldaParam.col)
         else super(normalized)
     }
-    
+
     clone(init: boolean = false): Board {
-        // TODO
-        // Функция должна вернуть копию объекта
-        // Если init, то дополнительно инициализируются
-        //  статические поля класса
-        return this
+        return new BoardBalda([...this.cells], init)
     }
 }
 
