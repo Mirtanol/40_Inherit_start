@@ -6,10 +6,16 @@ export class InputBalda extends Input {
     }
 
     get sym(): string {
-        // TODO
-        //  возвращает символ из поля ввода        
-        return ""
+    const el = document.getElementById("inputBalda") as HTMLInputElement | null
+    if (!el) return ""
+
+    const ch = el.value.trim().charAt(0)
+    if (!ch) return ""
+
+    if (!/^[а-яё]$/i.test(ch)) return ""
+    return ch.toLowerCase()
     }
+    
     move(): void {
         // TODO
         //  очищает поле ввода
