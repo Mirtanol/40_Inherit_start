@@ -24,11 +24,7 @@ export class BoardTic extends Board {
     }
 
     clone(init: boolean=false): Board {
-        // TODO
-        // Функция должна вернуть копию объекта
-        // Если init, то дополнительно инициализируются
-        //  статические поля класса
-        return this
+        return new BoardTic([...this.cells], init)
     }
 
     private getLineChar(line: number[]): string[] {
